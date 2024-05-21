@@ -1,5 +1,6 @@
 import uuid
 from jinja2 import Template
+from scorpiui.event_handler import register_event
 
 class Button:
     def __init__(self, label, height, width, background_color, text_color, border_radius, onclick, js_code=None, css_code=None):
@@ -13,6 +14,7 @@ class Button:
         self.js_code = js_code
         self.css_code = css_code
         self.id = uuid.uuid4().hex
+        register_event(self.id, self.handle_event)
 
     def render(self):
         js_event_handler = f"""
@@ -50,5 +52,5 @@ class Button:
             js_event_handler=js_event_handler
         )
 
-    def handle_event(self):
+    def handle_event(self, event_data):
         self.onclick()
