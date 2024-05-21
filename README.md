@@ -26,8 +26,11 @@ pip install scorpiui
 
 ## Getting Started
 
-Here's a simple example of how to create a button with ScorpiUI:
+Here's a simple example of how to create a page with single button with ScorpiUI:
 
+> **1** Create your new project folder and open it.
+> **2** Create file called `app.py` in your project root directory.
+> Here's sample `app.py` code to get started:
 ```python
 from scorpiui.app import app, run_app, register_event
 from scorpiui.components.button import Button
@@ -59,6 +62,25 @@ def home():
 
 if __name__ == '__main__':
     run_app()
+```
+
+> **3** Create folder `templates` then inside that create file called `base.html`
+> In `templates/base.html` use this code:
+```html
+{% extends 'base.html' %}
+{% block content %}
+    {{ content | safe }}
+{% endblock %}
+```
+
+> **4** Now, open terminal in your project's root directory
+> Then run below commands one by one that installs needed libraries as well as `scorpiui`:
+```sh
+git clone https://github.com/gladsonchala/scorpiui.git && pip install flask
+```
+> Now, you can run your web app:
+```sh
+python3 app.py
 ```
 
 <!--
