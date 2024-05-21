@@ -41,11 +41,12 @@ my_button = Button(
     label="Click Me",
     height=50,
     width=150,
-    color="#3498db",
+    background_color="#3498db",
+    text_color = "#ffffff",
     border_radius="12px",
     onclick=on_button_click,
-    js_code='alert("Button successfully clicked!");',  # Custom JS code to execute on click
-    css_code='border: 2px solid red;'  # Custom CSS code to style the button
+    js_code='alert("Button successfully clicked!");', 
+    css_code='border: 5px solid red; color: yellow; text-align: center; font-size: 16px; cursor: pointer;'
 )
 
 # Register the event handler
