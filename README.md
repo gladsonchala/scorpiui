@@ -58,7 +58,7 @@ register_event(my_button.id, my_button.handle_event)
 @app.route('/')
 def home():
     button_html = my_button.render()
-    return render_template('base.html', content=button_html)
+    return render_template('base.html', content=button_html, title="ScorpiUI Test")
 
 if __name__ == '__main__':
     run_app()
