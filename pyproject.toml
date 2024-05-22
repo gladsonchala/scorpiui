@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scorpiui"
+version = "0.0.1"
+authors = [
+  { name="Gemechis Chala (ScorpiDev)", email="gladsonchala@gmail.com" },
+]
+description = "ScorpiUI: A Python UI library for building web apps with minimal HTML, CSS, and JS."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Libraries :: Application Frameworks',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+]
+
+[project.urls]
+Homepage = "https://github.com/gladsonchala/scorpiui"
+Issues = "https://github.com/gladsonchala/scorpiui/issues"
