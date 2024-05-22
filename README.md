@@ -14,7 +14,6 @@
   
 - **JavaScript Execution**: Execute client-side JavaScript code in response to user actions, enabling real-time interactivity and enhancing the user experience.
 
-<!--
 ## Installation
 
 You can install ScorpiUI using pip:
@@ -22,7 +21,6 @@ You can install ScorpiUI using pip:
 ```bash
 pip install scorpiui
 ```
--->
 
 ## Getting Started
 
@@ -32,12 +30,36 @@ Here's a simple example of how to create a page with single button with ScorpiUI
 > **2** Create file called `app.py` in your project root directory.
 > Here's sample `app.py` code to get started:
 ```python
-from scorpiui.app import app, run_app, register_event
+from scorpiui.app import app, run_app
 from scorpiui.components.button import Button
+from scorpiui.components.text_input import TextInput
 from flask import render_template
 
+# Store input values
+input_values = {}
+
+def on_text_change(value):
+    input_values['text_input'] = value
+    print("Text input changed:", value)
+
 def on_button_click():
-    print("Button clicked")
+    text = input_values.get('text_input', '')
+    print("Button clicked", text)
+
+# Create a TextInput instance
+my_text_input = TextInput(
+    placeholder="Enter text here...",
+    height=30,
+    width=200,
+    background_color="#ffffff",
+    text_color="#000000",
+    border_radius="5px",
+    text_align="left",
+    read_only=False,
+    on_change=on_text_change,
+    js_code='console.log("Input changed");',
+    css_code='border: 1px solid #ccc; padding: 5px;'
+)
 
 # Create a button instance with the desired properties, JS code, and CSS code
 my_button = Button(
@@ -45,40 +67,26 @@ my_button = Button(
     height=50,
     width=150,
     background_color="#3498db",
-    text_color = "#ffffff",
+    text_color="#ffffff",
     border_radius="12px",
     onclick=on_button_click,
     js_code='alert("Button successfully clicked!");', 
     css_code='border: 5px solid red; color: yellow; text-align: center; font-size: 16px; cursor: pointer;'
 )
 
-# Register the event handler
-register_event(my_button.id, my_button.handle_event)
-
 @app.route('/')
 def home():
     button_html = my_button.render()
-    return render_template('base.html', content=button_html, title="ScorpiUI Test")
+    input_html = my_text_input.render()
+
+    HTMLcontent = button_html + input_html
+    return render_template('base.html', content=HTMLcontent, title="ScorpiUI Test")
 
 if __name__ == '__main__':
     run_app()
 ```
 
-> **3** Create folder `templates` then inside that create file called `base.html`
-> In `templates/base.html` use this code:
-```html
-{% extends 'base.html' %}
-{% block content %}
-    {{ content | safe }}
-{% endblock %}
-```
-
-> **4** Now, open terminal in your project's root directory
-> Then run below commands one by one that installs needed libraries as well as `scorpiui`:
-```sh
-git clone https://github.com/gladsonchala/scorpiui.git && pip install flask
-```
-> Now, you can run your web app:
+> **3** Now, open terminal in your project's root directory run your web app:
 ```sh
 python3 app.py
 ```
